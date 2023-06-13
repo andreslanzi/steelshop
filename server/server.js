@@ -14,9 +14,7 @@ app.use(express.json());
 // DB CONNECTION
 
 mongoose
-  .connect(
-    'mongodb+srv://admin:andreslanzi123@database.og1zd4q.mongodb.net/test'
-  )
+  .connect()
   .then(() => console.log('db connected'));
 
 app.use(cors());
