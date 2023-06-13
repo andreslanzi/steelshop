@@ -52,7 +52,6 @@ const EditModal = ({
     setIsLoading(true);
     const response = await axios.put('http://localhost:5005/api/products/edit', editingProduct);
     if (response.status === 200) {
-      console.log('Product edited!');
       setOriginalProduct(editingProduct);
       setEditSuccess(true);
       setTimeout(() => {
@@ -61,7 +60,6 @@ const EditModal = ({
       setIsLoading(false);
     } else {
       setIsLoading(false);
-      console.log('Error while editing');
     }
   };
 

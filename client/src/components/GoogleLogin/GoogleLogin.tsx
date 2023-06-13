@@ -19,8 +19,6 @@ const GoogleLogin = () => {
     onError: (error) => console.log('Login Failed:', error)
   });
 
-  console.log({ user }, { profile });
-
   useEffect(() => {
     if (user) {
       axios
@@ -42,7 +40,6 @@ const GoogleLogin = () => {
               username: res.data.name
             }
           });
-          console.log('signed in');
           navigate('/');
         })
         .catch((err) => console.log(err));

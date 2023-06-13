@@ -19,12 +19,6 @@ function App() {
 
   const queryClient = new QueryClient();
 
-  // const PrivateRoute = ({ Component }) => {
-  //   const isAuthenticated = useIsAuthenticated();
-  //   const auth = isAuthenticated();
-  //   return auth ? <Component /> : <Navigate to="/login" />;
-  // };
-
   return (
     <QueryClientProvider client={queryClient}>
       <ShoppingCartProvider>
@@ -39,7 +33,6 @@ function App() {
               </RequireAuth>
             }
           />
-          {/* <Route path="/" element={<ProductsPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/details/:product_id"

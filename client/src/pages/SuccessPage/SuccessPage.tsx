@@ -13,7 +13,6 @@ const SuccessPage = () => {
 
   useEffect(() => {
     const sendEmail = async () => {
-      console.log('trying to send it');
       emailjs
         .send(
           'service_cpmu52a',
