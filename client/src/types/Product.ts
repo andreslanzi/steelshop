@@ -10,3 +10,5 @@ export type Product = {
   discountPercentage: number;
   category: string;
 };
+
+export type Category = string;

@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import DeleteModal from '../Modals/DeleteModal';
 import EditModal from '../Modals/EditModal';
 import { Product } from '../../types/Product';
+import { useDeleteProductsById } from '../../hooks/useProducts';
 
 type TableProps = {
   products: Product[];
@@ -137,6 +138,13 @@ const Table = ({ products }: TableProps) => {
   const [editingProduct, setEditingProduct] = useState<Product | undefined>(undefined);
   const [deletingProducts, setDeletingProducts] = useState<boolean>(false);
 
+  const selectedProductsIds = selectedRowsInfo?.selectedRows.reduce(
+    (acc: string[], curr: Product) => [...acc, curr?._id ?? ''],
+    []
+  );
+
+  const { mutateAsync } = useDeleteProductsById(selectedProductsIds ?? []);
+
   const closeEditModal = () => {
     setOriginalProduct(undefined);
   };
@@ -156,15 +164,6 @@ const Table = ({ products }: TableProps) => {
     setDeletingProducts(true);
   };
 
-  const handleProductsDelete = () => {
-    const selectedProductsIds = selectedRowsInfo?.selectedRows.reduce(
-      (acc: string[], curr: Product) => [...acc, curr?._id ?? ''],
-      []
-    );
-    const newProductList = products.filter((p) => !selectedProductsIds?.includes(p._id ?? ''));
-    console.log(newProductList);
-  };
-
   const customStyles2 = {
     content: {
       top: '50%',
@@ -175,6 +174,11 @@ const Table = ({ products }: TableProps) => {
       transform: 'translate(-50%, -50%)',
       background: 'black'
     }
+  };
+
+  const handleProductsDelete = async () => {
+    mutateAsync();
+    setDeletingProducts(false);
   };
 
   const getModalContent = (key: string) => {

@@ -11,14 +11,19 @@ const DeleteModal = ({
   setDeletingProducts,
   handleProductsDelete
 }: DeleteModalProps) => {
+  const getModalTitle = () =>
+    selectedRows.length > 1 ? 'These items will be deleted' : 'This item will be deleted';
   return (
     <div>
-      <h1 className="text-xl font-bold mb-8">These items will be deleted</h1>
+      <h1 className="text-xl font-bold">{getModalTitle()}</h1>
+      <h1 className="text-xl font-light text-red-800 mb-8">
+        Please don't delete all products so that other person can also use this feature.
+      </h1>
       {selectedRows.map((p) => (
         <div key={p._id}>
           <ul>
             <li>
-              <span>{p.title}</span>
+              <span className="hover:cursor-default">{p.title}</span>
             </li>
           </ul>
         </div>

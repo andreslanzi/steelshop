@@ -68,7 +68,7 @@ const ProductFormPage = () => {
   return (
     <>
       <div className="grid grid-cols-2 gap-4 py-8 px-4">
-        <form className="grid grid-cols-2 w-[100%] gap-4 justify-center m-auto align-center items-center">
+        <form className="grid grid-cols-2 w-[80%] gap-4 justify-center m-auto align-center items-center">
           <label className="text-right">Title</label>
           <input
             className="rounded w-full"

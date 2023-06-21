@@ -9,8 +9,7 @@ type ProductDetailsCardProps = {
 };
 
 const ProductDetailsCard = ({ product, isNew }: ProductDetailsCardProps) => {
-  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
-    useShoppingCart();
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
 
   const checkStock = (productId: string) => {
     const productQuantity = getItemQuantity(productId);
@@ -20,7 +19,7 @@ const ProductDetailsCard = ({ product, isNew }: ProductDetailsCardProps) => {
   const quantity = getItemQuantity(product._id ?? '');
   return (
     <>
-      <div className="flex flex-col items-center align-center content-center xl:w-[50%] w-[85%] m-auto py-8">
+      <div className="flex flex-col items-center align-center content-center xl:w-[70%] w-[85%] m-auto py-8">
         <div className="text-center px-16">
           {product.title && (
             <h1 className="font-semibold text-xl underline underline-offset-8 decoration-blue-600 mb-8">
@@ -31,76 +30,55 @@ const ProductDetailsCard = ({ product, isNew }: ProductDetailsCardProps) => {
             <h3 className="font-light text-md rounded p-4">{product.description}</h3>
           )}
         </div>
-        {/* <div className="inline-flex flex-row px-8 py-8 justify-between gap-6">
-          <div className="flex flex-col justify-between items-center align-center text-center">
-            {product.brand && (
-              <div className="w-[70px] whitespace-nowrap">
-                <h3 className="font-semibold text-blue-200">Brand</h3>
-                <h3 className="text-clip overflow-hidden">{product.brand}</h3>
-              </div>
-            )}
-            {product.price && (
-              <div className="w-[70px] whitespace-nowrap">
-                <h3 className="font-semibold text-blue-200">Price</h3>
-                <h3 className="text-clip overflow-hidden">${product.price}</h3>
-              </div>
-            )}
-            {product.stock > 0 && isNew && (
-              <div className="w-[70px] whitespace-nowrap">
-                <h3 className="font-semibold text-blue-200">Stock</h3>
-                <h3 className="text-clip overflow-hidden">{product.stock}</h3>
-              </div>
-            )}
-          </div> */}
-        <div className="flex flex-inline ">
-          <div className="flex flex-inline justify-center align-center items-center">
+        <div className="flex flex-inline w-full">
+          <div className="flex flex-inline justify-center align-center items-center w-full">
             <div>
               {product.thumbnail && (
                 <Tilt>
-                  <div className="max-w-[450px] ">
+                  <div className="max-w-[500px] ">
                     <img src={product.thumbnail} alt="productImage" />
                   </div>
                 </Tilt>
               )}
             </div>
 
-            <div className="bg-primary rounded-xl w-full md:w-[250px] py-4">
+            <div className="bg-primary rounded-xl w-full md:w-[300px] py-4">
               <h1 className="text-center font-bold text-xl">Product Info</h1>
               <div className="grid grid-cols-2 md:gap-8 gap-2 justify-center justify-items-center md:px-8 px-0 py-4 text-center">
                 {product.rating > 0 && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Rating</h3>
-                    <h3 className="text-clip overflow-hidden">{product.rating}</h3>{' '}
+                    <h3 className="text-clip text-center">{product.rating}</h3>{' '}
                   </div>
                 )}
                 {product.discountPercentage > 0 && isNew && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Discount</h3>
-                    <h3 className="text-clip overflow-hidden">{product.discountPercentage}%</h3>
+                    <h3 className="text-clip text-center">{product.discountPercentage}%</h3>
                   </div>
                 )}
                 {product.category && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Category</h3>
-                    <h3 className="text-clip overflow-hidden">{product.category}</h3>
+                    <h3 className="text-clip text-center">{product.category}</h3>
                   </div>
                 )}
                 {product.brand && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Brand</h3>
-                    <h3 className="text-clip overflow-hidden">{product.brand}</h3>
+                    <h3 className="text-clip text-center">{product.brand}</h3>
                   </div>
                 )}
                 {product.price && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Price</h3>
-                    <h3 className="text-clip overflow-hidden">${product.price}</h3>
+                    <h3 className="text-clip text-center">${product.price}</h3>
                   </div>
                 )}
                 {product.stock > 0 && isNew && (
                   <div className="w-[70px] whitespace-nowrap">
                     <h3 className="font-semibold text-blue-200">Stock</h3>
-                    <h3 className="text-clip overflow-hidden">{product.stock}</h3>
+                    <h3 className="text-clip text-center">{product.stock}</h3>
                   </div>
                 )}
               </div>
@@ -112,19 +90,19 @@ const ProductDetailsCard = ({ product, isNew }: ProductDetailsCardProps) => {
             {product.rating > 0 && (
               <div className="w-[70px] whitespace-nowrap">
                 <h3 className="font-semibold text-blue-200">Rating</h3>
-                <h3 className="text-clip overflow-hidden">{product.rating}</h3>
+                <h3 className="text-clip text-center">{product.rating}</h3>
               </div>
             )}
             {product.discountPercentage > 0 && isNew && (
               <div className="w-[70px] whitespace-nowrap">
                 <h3 className="font-semibold text-blue-200">Discount</h3>
-                <h3 className="text-clip overflow-hidden">{product.discountPercentage}%</h3>
+                <h3 className="text-clip text-center">{product.discountPercentage}%</h3>
               </div>
             )}
             {product.category && (
               <div className="w-[70px] whitespace-nowrap">
                 <h3 className="font-semibold text-blue-200">Category</h3>
-                <h3 className="text-clip overflow-hidden">{product.category}</h3>
+                <h3 className="text-clip text-center">{product.category}</h3>
               </div>
             )}
           </div> */}

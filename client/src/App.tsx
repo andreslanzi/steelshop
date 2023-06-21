@@ -16,6 +16,7 @@ import SuccessPage from './pages/SuccessPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [filter, setFilter] = useState('');
 
   const queryClient = new QueryClient();
 
@@ -29,7 +30,7 @@ function App() {
             path={'/'}
             element={
               <RequireAuth loginPath={'/login'}>
-                <ProductsPage />
+                <ProductsPage filter={filter ?? null} setFilter={setFilter} />
               </RequireAuth>
             }
           />

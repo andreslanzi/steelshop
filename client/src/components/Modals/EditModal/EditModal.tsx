@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Product } from '../../../types/Product';
 import Loader from '../../Loader';
 import { useEffect, useState } from 'react';
+import { useEditProducts } from '../../../hooks/useProducts';
 
 type EditModalProps = {
   editingProduct: Product;
@@ -20,6 +21,8 @@ const EditModal = ({
   const [touched, setTouched] = useState<boolean>(false);
   const [editSuccess, setEditSuccess] = useState<boolean>(false);
   const numberTypes = ['price', 'discountPercentage', 'stock', 'rating'];
+
+  const { mutateAsync } = useEditProducts(editingProduct);
 
   useEffect(() => {
     if (JSON.stringify(originalProduct) !== JSON.stringify(editingProduct)) {
@@ -52,6 +55,7 @@ const EditModal = ({
     setIsLoading(true);
     const response = await axios.put('http://localhost:5005/api/products/edit', editingProduct);
     if (response.status === 200) {
+      mutateAsync();
       setOriginalProduct(editingProduct);
       setEditSuccess(true);
       setTimeout(() => {
